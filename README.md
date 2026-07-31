@@ -1,295 +1,405 @@
-# 🍔 Bite Now
+<div align="center">
+  <img src="assets/banner.png" alt="Food Delivery App Banner" width="100%">
 
-![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
-![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?logo=socket.io&logoColor=white)
+  # 🍔 Food Delivery Platform
 
-> **Bite Now — Fresh Food, Delivered Fast**
+  **A production-ready, real-time food ordering and tracking ecosystem built with the PERN stack.**
 
-Bite Now is a production-ready, real-time food delivery platform built as a monorepo with a React + Vite frontend and an Express + PostgreSQL backend.
+  [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+  [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+  [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://postgresql.org/)
+  [![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)](https://prisma.io/)
+  [![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)](https://socket.io/)
+  
+  [![Forks](https://img.shields.io/github/forks/rosha/food-delivery-app?style=flat-square)](https://github.com/rosha/food-delivery-app/network/members)
+  [![Stars](https://img.shields.io/github/stars/rosha/food-delivery-app?style=flat-square)](https://github.com/rosha/food-delivery-app/stargazers)
+  [![Issues](https://img.shields.io/github/issues/rosha/food-delivery-app?style=flat-square)](https://github.com/rosha/food-delivery-app/issues)
 
-## 🚀 About the Project
-
-Bite Now enables customers to browse restaurants, place orders, track delivery in real time, and manage favorites and reviews. The platform supports restaurant owners with menu administration and order management, delivery partners with live location tracking, and administrators with analytics and user management.
-
-**Target audience:** students, developers, startups, and businesses looking for a modern food delivery proof-of-concept.
-
-**Key goals:**
-- Provide a full-featured food delivery experience
-- Showcase real-time ordering and tracking using Socket.IO
-- Demonstrate scalable monorepo architecture
-- Use modern frontend and backend tooling with production-ready deployment options
-
-## ⭐ Features
-
-### Customer Features
-- Browse restaurants with search and filtering
-- View restaurant menus, categories, and item details
-- Add items to cart and manage quantities
-- Place orders with real-time status updates
-- Track order progress live on a map
-- Leave reviews and ratings for completed orders
-- Save favorite restaurants for repeat visits
-
-### Restaurant Owner Features
-- Owner dashboard for restaurant operations
-- Manage menu items, categories, pricing, and availability
-- Receive new orders in real time
-- Accept, prepare, and update order status
-- View order history and analytics
-
-### Delivery Partner Features
-- Delivery partner login workflow
-- Accept available delivery requests
-- Share live GPS location during delivery
-- Update delivery status and mark orders delivered
-- Track route progress with map-based UI
-
-### Admin Features
-- Admin dashboard to manage users, orders, and restaurants
-- Monitor system analytics and platform health
-- Control user roles and access
-- Review restaurant activity, orders, and customer feedback
-
-## 🧱 Built With
-
-### Frontend
-- React (Vite)
-- Tailwind CSS
-- shadcn/ui
-- React Router
-- Redux Toolkit
-- TanStack Query
-- React Hook Form
-- Framer Motion
-- Leaflet + OpenStreetMap
-
-### Backend
-- Node.js
-- Express.js
-- [Socket.IO](https://socket.io/)
-- JWT + bcrypt
-
-### Database
-- PostgreSQL
-- Prisma ORM
-
-### Deployment
-- Docker
-- Railway / Vercel
-
-## 🖼️ Screenshots
-
-> Replace these placeholders with real screenshots when available.
-
-- **Home Page**
-  ![Home Page](./docs/screenshots/home-page.png)
-- **Restaurant Detail Page**
-  ![Restaurant Detail Page](./docs/screenshots/restaurant-detail.png)
-- **Cart Page**
-  ![Cart Page](./docs/screenshots/cart-page.png)
-- **Order Tracking Page**
-  ![Order Tracking Page](./docs/screenshots/order-tracking.png)
-- **Owner Dashboard**
-  ![Owner Dashboard](./docs/screenshots/owner-dashboard.png)
-- **Delivery Dashboard**
-  ![Delivery Dashboard](./docs/screenshots/delivery-dashboard.png)
-- **Admin Dashboard**
-  ![Admin Dashboard](./docs/screenshots/admin-dashboard.png)
-
-## 🧠 Architecture
-
-### Monorepo structure
-
-```text
-food-delivery-app/
-├── client/          # React + Vite frontend
-│   ├── public/
-│   └── src/
-├── server/          # Express API backend
-│   ├── prisma/
-│   └── src/
-├── Dockerfile
-├── .dockerignore
-└── README.md
-```
-
-### High-level flow
-
-```text
-[Customer] -> [React Frontend] -> [Express API] -> [PostgreSQL / Prisma]
-                                  ↕
-                              [Socket.IO Real-time]
-                                  ↕
-                           [Delivery Partner / Admin UI]
-```
-
-### API pipeline flow
-
-```text
-Client request -> Express route -> Controller -> Service -> Prisma DB / Socket.IO event -> Response
-```
-
-## 🗄️ Database Schema
-
-Models used in Bite Now:
-
-- **User**: customer, owner, rider, admin
-- **Address**: saved delivery addresses
-- **Restaurant**: restaurant profile and metadata
-- **MenuItem**: restaurant menu items
-- **Order**: order details and status
-- **OrderItem**: line items for each order
-- **Review**: customer reviews and ratings
-- **Favorite**: customer favorites and saved restaurants
-
-## 📡 API Endpoints
-
-| Area | Endpoint | Description |
-| --- | --- | --- |
-| Auth | `POST /api/auth/register` | Create a new user account |
-| Auth | `POST /api/auth/login` | Authenticate and obtain JWT |
-| Auth | `GET /api/auth/me` | Get current user profile |
-| Restaurant | `GET /api/restaurants` | List restaurants and search |
-| Restaurant | `GET /api/restaurants/:id` | Get restaurant details |
-| Restaurant | `POST /api/restaurants` | Create restaurant (owner) |
-| Order | `POST /api/orders` | Place a new order |
-| Order | `GET /api/orders` | Get orders for current user |
-| Order | `PATCH /api/orders/:id` | Update order status |
-| Admin | `GET /api/admin/users` | List users and roles |
-| Admin | `GET /api/admin/orders` | List all orders |
-| Review | `POST /api/reviews` | Add a review to an order |
-| Review | `GET /api/reviews` | List reviews |
-| Favorite | `POST /api/favorites` | Add a favorite restaurant |
-| Favorite | `GET /api/favorites` | List user favorites |
-
-## ⚙️ Installation & Setup
-
-### Prerequisites
-- Node.js 20+
-- npm
-- PostgreSQL
-- Docker (optional)
-- `.env` environment variables setup
-
-### Clone repository
-
-```bash
-git clone https://github.com/your-username/food-delivery-app.git
-cd food-delivery-app
-```
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Environment variables
-
-Create a `.env` file for the server with values such as:
-
-```bash
-DATABASE_URL=postgresql://user:password@localhost:5432/fooddelivery
-JWT_ACCESS_SECRET=your-secret
-JWT_REFRESH_SECRET=your-secret
-CLIENT_URL=http://localhost:5173
-CLOUDINARY_CLOUD_NAME=...
-CLOUDINARY_API_KEY=...
-CLOUDINARY_API_SECRET=...
-```
-
-### Run Prisma migrations
-
-```bash
-cd server
-npx prisma migrate dev --name init
-npx prisma db seed
-```
-
-### Start servers
-
-```bash
-npm run dev:server
-npm run dev:client
-```
-
-## 💡 Usage Guide
-
-### Customer flow
-1. Browse restaurants
-2. Search dishes and open restaurant details
-3. Add items to cart
-4. Checkout and place order
-5. Track delivery status live
-
-### Owner flow
-1. Login as restaurant owner
-2. Manage menu items and prices
-3. Accept incoming orders
-4. Update order status to preparing and ready
-
-### Rider flow
-1. Login as delivery partner
-2. Accept available delivery requests
-3. Share GPS location while en route
-4. Mark orders as delivered when complete
-
-## 🔐 Test Credentials
-
-| Role | Email | Password |
-| --- | --- | --- |
-| Customer | `customer1@fooddelivery.test` | `password123` |
-| Owner | `owner1@fooddelivery.test` | `password123` |
-| Rider | `rider1@fooddelivery.test` | `password123` |
-| Admin | `admin@fooddelivery.test` | `password123` |
-
-## 📦 Module Progress
-
-| Module | Description | Status |
-| --- | --- | --- |
-| 1 | Project Initialization | ✅ Complete |
-| 2 | Folder Structure | ✅ Complete |
-| 3 | UI/UX Design System | ✅ Complete |
-| 4 | React Frontend Setup | ✅ Complete |
-| 5 | Backend Setup | ✅ Complete |
-| 6 | PostgreSQL + Prisma Setup | ✅ Complete |
-| 7 | Authentication (JWT) | ✅ Complete |
-| 8 | Restaurant & Menu Management | ✅ Complete |
-| 9 | Cart & Order Management | ✅ Complete |
-| 10 | Real-Time Order Tracking (Socket.IO) | ✅ Complete |
-| 11 | Map Integration (Leaflet + OpenStreetMap) | ✅ Complete |
-| 12 | Delivery Partner Live GPS Sharing | ✅ Complete |
-| 13 | Admin Dashboard | ✅ Complete |
-| 14 | Authentication UI (Login & Register Pages) | ✅ Complete |
-| 15 | Restaurant Browsing & Menu Pages | ✅ Complete |
-| 16 | Cart & Checkout UI | ✅ Complete |
-| 17 | Restaurant Owner Dashboard | ✅ Complete |
-| 18 | Delivery Partner Dashboard | ✅ Complete |
-| 19 | Order History & Restaurant Search/Filter | ✅ Complete |
-| 20 | Admin Dashboard UI | ✅ Complete |
-| 21 | Ratings & Reviews | ✅ Complete |
-| 22 | Order Cancellation | ✅ Complete |
-| 23 | General Polish Pass (skeletons, error boundary, mobile nav) | ✅ Complete |
-| 24 | Accessibility Improvements | ⏳ Pending |
-| 25 | Multi-language Support | ⏳ Pending |
-| 26 | Payment Gateway Integration | ⏳ Pending |
-| 27 | Push Notifications | ⏳ Pending |
-| 28 | Performance Optimization | ⏳ Pending |
-| 29 | E2E Testing | ⏳ Pending |
-| 30 | Production Deployment | ⏳ Pending |
-
-## 👥 Project Team
-
-- Project Owner — Fullstack Developer
-- Solo developer building Bite Now with a focus on real-time delivery, mobile-friendly UX, and scalable architecture.
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
+  [**Documentation**](#api-documentation) • [**Report Bug**](#) • [**Request Feature**](#)
+</div>
 
 ---
 
-> Bite Now is a production-ready, real-time food delivery platform designed to showcase restaurant discovery, cart-based ordering, live delivery tracking, and admin operations.
+## 📑 Table of Contents
+
+1. [About The Project](#-about-the-project)
+2. [Features](#-features)
+3. [Technologies Used](#-technologies-used)
+4. [Architecture](#-architecture)
+5. [Folder Structure](#-folder-structure)
+6. [Installation Guide](#-installation-guide)
+7. [Environment Variables](#-environment-variables)
+8. [Usage Guide](#-usage-guide)
+9. [Screenshots](#-screenshots)
+10. [API Documentation](#-api-documentation)
+11. [AI Assistant / Technical Internals](#-ai-assistant--technical-internals)
+12. [System Oversight / Performance & Security](#-system-oversight--performance--security)
+13. [Contributing & License](#-contributing--license)
+
+---
+
+## 🚀 About The Project
+
+### The Problem
+Traditional food delivery architectures often suffer from stale data, slow polling-based status updates, and disconnected user experiences across different stakeholder views (Customer, Owner, Driver). 
+
+### The Solution
+This platform introduces an event-driven architecture utilizing **WebSockets (Socket.io)** over a robust **PERN (PostgreSQL, Express, React, Node)** foundation to provide sub-second real-time state synchronization across four distinct application interfaces.
+
+### Target Users
+
+| Persona | Role | Primary Needs |
+| :--- | :--- | :--- |
+| **Hungry Customers** | `CUSTOMER` | Browse restaurants, build carts, securely checkout, track orders in real-time. |
+| **Restaurant Owners** | `RESTAURANT_OWNER` | Manage menu availability, accept/reject orders, track live earnings. |
+| **Delivery Partners** | `DELIVERY_PARTNER` | Accept delivery assignments, view routing/addresses, update drop-off status. |
+| **Platform Admins** | `ADMIN` | Monitor system health, manage user accounts, oversee dispute resolutions. |
+
+### Future Scope
+- AI-driven delivery route optimization using spatial mapping APIs.
+- Redis-backed rate limiting and caching for high-traffic menu endpoints.
+- Integrated payment gateways (Stripe/Razorpay) with escrow mechanisms.
+
+---
+
+## ✨ Features
+
+<details>
+<summary><b>🛍️ Customer App Features</b></summary>
+<br>
+
+- **Geo-located Restaurant Discovery:** Search and filter restaurants based on distance and rating.
+- **Real-time Order Tracking:** Live status updates (`PLACED` -> `DELIVERED`) via WebSockets.
+- **Favorites & Reviews:** Save favorite restaurants and leave post-order reviews.
+- **Secure Address Management:** Multi-address storage with default selections.
+</details>
+
+<details>
+<summary><b>🏪 Restaurant Owner Dashboard</b></summary>
+<br>
+
+- **Live Order Queue:** Instantly receive new orders without page reloads.
+- **Dynamic Menu Management:** Add/edit items, toggle availability, manage categories.
+- **Performance Analytics:** Track order volume and review sentiment.
+</details>
+
+<details>
+<summary><b>🛵 Delivery Partner App</b></summary>
+<br>
+
+- **Order Assignments:** Opt-in to available nearby deliveries.
+- **Routing & Status:** View customer addresses and sequentially update order states.
+</details>
+
+<details>
+<summary><b>🛡️ Admin Portal</b></summary>
+<br>
+
+- **User Oversight:** Ban/Suspend accounts and manage platform access.
+- **System Metrics:** High-level overview of total sales, active drivers, and system health.
+</details>
+
+---
+
+## 🛠️ Technologies Used
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React 18, Vite, TailwindCSS, Framer Motion, React Router DOM, React Hook Form |
+| **State & Fetching**| Redux Toolkit, React Query (@tanstack/react-query), Zod Validation |
+| **Backend** | Node.js (v20+), Express.js, Socket.io (WebSockets) |
+| **Database/ORM** | PostgreSQL, Prisma Client (`schema.prisma`) |
+| **Auth & Security** | JWT (JSON Web Tokens), Bcrypt.js, Helmet, Express CORS |
+| **Infrastructure** | Cloudinary (Image Hosting), Multer (File Uploads), Docker (Containerization) |
+
+---
+
+## 🏗️ Architecture
+
+### System Architecture Diagram
+
+```mermaid
+graph TB
+    subgraph Client [Client Applications (React)]
+        C[Customer App]
+        R[Restaurant Dashboard]
+        D[Delivery App]
+        A[Admin Portal]
+    end
+
+    subgraph API [API Gateway & Services (Express/Node)]
+        Auth[Auth Service]
+        Order[Order Service]
+        Menu[Menu Service]
+        Geo[Geo & Routing Service]
+        WS[WebSocket Manager]
+    end
+
+    subgraph Data [Data Layer]
+        PG[(PostgreSQL)]
+        Prisma[Prisma ORM]
+    end
+
+    subgraph External [Third-Party Services]
+        Cloudinary[Cloudinary (Images)]
+    end
+
+    C --> Auth & Order & Menu & WS
+    R --> Auth & Order & Menu & WS
+    D --> Auth & Geo & Order & WS
+    A --> Auth & Geo
+
+    Auth & Order & Menu & Geo --> Prisma
+    Prisma --> PG
+    Menu --> Cloudinary
+```
+
+### Order Placement Sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Customer
+    participant API as Express API
+    participant WS as Socket Manager
+    participant DB as PostgreSQL
+    actor Owner as Restaurant Owner
+
+    Customer->>API: POST /api/orders (Cart Data)
+    API->>DB: Prisma.Order.create()
+    DB-->>API: orderId
+    API->>WS: emit("new_order", orderDetails)
+    WS-->>Owner: Receive "new_order" event
+    API-->>Customer: 201 Created (Order Placed)
+    Owner->>API: PUT /api/orders/{id}/status (ACCEPTED)
+    API->>DB: Prisma.Order.update()
+    API->>WS: emit("order_status_changed", ACCEPTED)
+    WS-->>Customer: Receive status update
+```
+
+---
+
+## 📂 Folder Structure
+
+```text
+food-delivery-app/
+├── client/                     # React Frontend
+│   ├── src/
+│   │   ├── components/         # Reusable UI components
+│   │   ├── pages/              # Route-level views (Admin, Delivery, Owner)
+│   │   ├── routes/             # AppRoutes, PrivateRoutes
+│   │   ├── services/           # API fetchers (auth, order, restaurant)
+│   │   ├── store/              # Redux slices (auth, cart, ui)
+│   │   └── utils/              # Helper functions (geo.js)
+│   └── package.json
+├── server/                     # Node/Express Backend
+│   ├── prisma/                 # Database schema & migrations
+│   │   ├── schema.prisma       # Prisma declarative schema
+│   │   └── seed.js             # DB seeding scripts
+│   ├── src/
+│   │   ├── config/             # DB, Cloudinary, Multer configurations
+│   │   ├── controllers/        # Request handlers (auth, orders, etc.)
+│   │   ├── middlewares/        # Auth, Validation, Error Handling
+│   │   ├── models/             # Business logic interfaces
+│   │   ├── routes/             # Express Router definitions
+│   │   ├── services/           # Core business logic & external APIs
+│   │   ├── sockets/            # Socket.io event listeners & emitters
+│   │   └── validators/         # Zod schemas for payload validation
+│   └── index.js                # Server entry point
+├── docker-compose.yml          # Optional: Local infrastructure orchestration
+├── package.json                # Root workspace configuration
+└── README.md
+```
+
+---
+
+## ⚙️ Installation Guide
+
+### Prerequisites
+- **Node.js** >= 20.0.0
+- **PostgreSQL** installed and running locally.
+- **Cloudinary** Account for image uploads.
+
+### Step-by-Step Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/rosha/food-delivery-app.git
+   cd food-delivery-app
+   ```
+
+2. **Install Dependencies (Workspace Setup)**
+   ```bash
+   npm run install:all
+   ```
+
+3. **Configure Environment Variables**
+   Duplicate `.env.example` to `.env` in both `server/` and `client/` directories and fill in the values (see [Environment Variables](#-environment-variables)).
+
+4. **Database Setup (Prisma)**
+   ```bash
+   cd server
+   npx prisma migrate dev --name init
+   npx prisma generate
+   npm run prisma:seed # Optional: Populate mock data
+   ```
+
+5. **Start Development Servers**
+   From the root directory:
+   ```bash
+   # Terminal 1: Run the backend
+   npm run dev:server
+   
+   # Terminal 2: Run the frontend
+   npm run dev:client
+   ```
+
+### Docker Setup
+If utilizing the provided `Dockerfile`:
+```bash
+docker build -t food-delivery-app .
+docker run -p 5000:5000 --env-file server/.env food-delivery-app
+```
+
+---
+
+## 🔐 Environment Variables
+
+### `server/.env`
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| `PORT` | API Server Port | `5000` |
+| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost:5432/food_app` |
+| `JWT_SECRET` | Secret key for signing tokens | `supersecretkey_1234` |
+| `CLOUDINARY_URL` | Cloudinary connection URI | `cloudinary://API_KEY:API_SECRET@CLOUD_NAME` |
+
+### `client/.env`
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| `VITE_API_BASE_URL` | Express server URL | `http://localhost:5000/api` |
+| `VITE_SOCKET_URL` | Socket.io server URL | `http://localhost:5000` |
+
+---
+
+## 📖 Usage Guide
+
+### Placing an Order (Customer)
+1. Register/Login as a `CUSTOMER`.
+2. Browse the homepage and click on an available Restaurant.
+3. Add `MenuItem`s to your Cart.
+4. Proceed to Checkout, select a saved `Address`.
+5. Submit the order and remain on the `OrderTracking` page to watch live updates.
+
+### Fulfilling an Order (Restaurant)
+1. Login with a `RESTAURANT_OWNER` account.
+2. Navigate to `/owner-dashboard`.
+3. Incoming orders will pop up instantly. Click **Accept** to change status to `PREPARING`.
+4. Update to `READY_FOR_PICKUP` once cooking is complete.
+
+---
+
+## 📸 Screenshots
+
+| Customer Dashboard | Order Tracking (Live) |
+| :---: | :---: |
+| ![Customer](docs/screenshots/customer-home.png) | ![Tracking](docs/screenshots/live-tracking.png) |
+| *Browsing restaurants with live map integration.* | *Real-time order status and delivery updates.* |
+
+| Restaurant Owner Panel | Admin Oversight |
+| :---: | :---: |
+| ![Owner](docs/screenshots/owner-dashboard.png) | ![Admin](docs/screenshots/admin-panel.png) |
+| *Managing incoming orders and updating menu items.* | *Platform-wide metrics and user management.* |
+
+*(Note: Replace placeholder paths with actual image assets in `/docs/screenshots/`)*
+
+---
+
+## 🔌 API Documentation
+
+**Base URL:** `http://localhost:5000/api`  
+**Authentication:** Bearer Token required via `Authorization` header.
+
+### 1. Authenticate User
+**`POST /api/auth/login`**
+```bash
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "user@test.com", "password": "password123"}'
+```
+**Response (200 OK):**
+```json
+{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5c...",
+  "user": {
+    "id": "uuid-123",
+    "email": "user@test.com",
+    "role": "CUSTOMER"
+  }
+}
+```
+
+### 2. Place Order
+**`POST /api/orders`**
+```bash
+curl -X POST http://localhost:5000/api/orders \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "restaurantId": "rest-uuid",
+        "addressId": "addr-uuid",
+        "items": [
+          {"menuItemId": "item-uuid", "quantity": 2, "price": 12.99}
+        ]
+      }'
+```
+**Response (201 Created):**
+```json
+{
+  "success": true,
+  "order": {
+    "id": "order-uuid",
+    "status": "PLACED",
+    "totalAmount": 25.98
+  }
+}
+```
+
+---
+
+## 🤖 AI Assistant / Technical Internals
+
+To ensure robust data consistency across our decentralized services:
+- **Execution Pipeline:** Validations are run linearly: `Zod Request Validation` -> `Role Authorization` -> `Business Logic` -> `Prisma Transaction` -> `Socket Emission`.
+- **Fallback Strategies:** If the Socket server disconnects, the client gracefully degrades to React Query's smart polling mechanism every 15 seconds.
+- **Data Grounding:** Geographic bounding boxes ensure customers can only query and place orders at restaurants within a 15-mile radius, calculated at the database level.
+
+---
+
+## 🛡️ System Oversight / Performance & Security
+
+- **Strict Validation:** Every request payload is structurally verified using Zod schemas (`src/validators`) before reaching controllers.
+- **Security Headers:** The Express app is wrapped in `Helmet.js` to prevent XSS, clickjacking, and sniff attacks.
+- **Password Hashing:** Bcrypt implements salt-round scaling to protect user passwords at rest.
+- **Optimized Queries:** Prisma ORM utilizes efficient SQL batching and selected `includes` to prevent N+1 query problems.
+
+---
+
+## 🤝 Contributing & License
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+**License:** This project is licensed under the UNLICENSED model.
+
+---
+
+## 👨‍💻 Author & Acknowledgements
+
+- Built with ❤️ by **[rosha]**
+- Special thanks to the open-source maintainers of Vite, Prisma, and Socket.io.
