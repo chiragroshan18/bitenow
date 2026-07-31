@@ -1,0 +1,22 @@
+{
+	"name": "food-delivery-app",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Production-ready real-time food ordering and tracking platform",
+	"workspaces": [
+		"client",
+		"server"
+	],
+	"scripts": {
+		"dev:client": "npm run dev --workspace=client",
+		"dev:server": "npm run dev --workspace=server",
+		"install:all": "npm install"
+	},
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"license": "UNLICENSED",
+	"devDependencies": {
+		"jsrepo": "^3.8.1"
+	}
+}

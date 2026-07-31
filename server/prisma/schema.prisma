@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  RESTAURANT_OWNER
+  DELIVERY_PARTNER
+  ADMIN
+}
+
+enum OrderStatus {
+  PLACED
+  ACCEPTED
+  PREPARING
+  READY_FOR_PICKUP
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id                        String    @id @default(uuid())
+  name                      String
+  email                     String    @unique
+  password                  String
+  phone                     String?
+  role                      Role      @default(CUSTOMER)
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
+
+  restaurant    Restaurant?
+  orders        Order[]
+  deliveries    Order[]   @relation("DeliveryPartnerOrders")
+  addresses     Address[]
+  reviews       Review[]
+  favorites     Favorite[]  // ← ADDED
+}
+
+model Address {
+  id          String   @id @default(uuid())
+  label       String
+  street      String
+  city        String
+  state       String
+  postalCode  String
+  latitude    Float?
+  longitude   Float?
+  isDefault   Boolean  @default(false)
+
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+
+  orders      Order[]
+}
+
+model Restaurant {
+  id            String     @id @default(uuid())
+  name          String
+  description   String?
+  imageUrl      String?
+  address       String
+  latitude      Float?
+  longitude     Float?
+  isOpen        Boolean    @default(true)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  owner         User       @relation(fields: [ownerId], references: [id])
+  ownerId       String     @unique
+
+  menuItems     MenuItem[]
+  orders        Order[]
+  reviews       Review[]
+  favorites     Favorite[]  // ← ADDED
+}
+
+model MenuItem {
+  id            String     @id @default(uuid())
+  name          String
+  description   String?
+  price         Float
+  imageUrl      String?
+  isAvailable   Boolean    @default(true)
+  category      String
+
+  restaurant    Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId  String
+
+  orderItems    OrderItem[]
+}
+
+model Order {
+  id                  String       @id @default(uuid())
+  status              OrderStatus  @default(PLACED)
+  totalAmount         Float
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  customer            User         @relation(fields: [customerId], references: [id])
+  customerId           String
+
+  restaurant           Restaurant   @relation(fields: [restaurantId], references: [id])
+  restaurantId         String
+
+  deliveryPartner       User?        @relation("DeliveryPartnerOrders", fields: [deliveryPartnerId], references: [id])
+  deliveryPartnerId     String?
+
+  deliveryAddress       Address      @relation(fields: [addressId], references: [id])
+  addressId             String
+
+  items                 OrderItem[]
+  review                Review?
+}
+
+model OrderItem {
+  id            String    @id @default(uuid())
+  quantity      Int
+  priceAtOrder  Float
+
+  order         Order     @relation(fields: [orderId], references: [id])
+  orderId       String
+
+  menuItem      MenuItem  @relation(fields: [menuItemId], references: [id])
+  menuItemId    String
+}
+
+model Review {
+  id           String     @id @default(uuid())
+  rating       Int
+  comment      String?
+  createdAt    DateTime   @default(now())
+
+  customer     User       @relation(fields: [customerId], references: [id])
+  customerId   String
+
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId String
+
+  order        Order      @relation(fields: [orderId], references: [id])
+  orderId      String     @unique
+}
+
+// ← NEW MODEL
+model Favorite {
+  id           String     @id @default(uuid())
+  createdAt    DateTime   @default(now())
+
+  user         User       @relation(fields: [userId], references: [id])
+  userId       String
+
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId String
+
+  @@unique([userId, restaurantId])
+}
