@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/banner.png" alt="Food Delivery App Banner" width="100%">
+  
 
   # 🍔 Food Delivery Platform
 
@@ -20,23 +20,7 @@
 
 ---
 
-## 📑 Table of Contents
 
-1. [About The Project](#-about-the-project)
-2. [Features](#-features)
-3. [Technologies Used](#-technologies-used)
-4. [Architecture](#-architecture)
-5. [Folder Structure](#-folder-structure)
-6. [Installation Guide](#-installation-guide)
-7. [Environment Variables](#-environment-variables)
-8. [Usage Guide](#-usage-guide)
-9. [Screenshots](#-screenshots)
-10. [API Documentation](#-api-documentation)
-11. [AI Assistant / Technical Internals](#-ai-assistant--technical-internals)
-12. [System Oversight / Performance & Security](#-system-oversight--performance--security)
-13. [Contributing & License](#-contributing--license)
-
----
 
 ## 🚀 About The Project
 
@@ -315,15 +299,14 @@ docker run -p 5000:5000 --env-file server/.env food-delivery-app
 
 | Customer Dashboard | Order Tracking (Live) |
 | :---: | :---: |
-| ![Customer](docs/screenshots/customer-home.png) | ![Tracking](docs/screenshots/live-tracking.png) |
+| ![Customer](https://github.com/chiragroshan18/bitenow/blob/main/docs/screenshots/Customer%20Dashboard.png) | ![Tracking](https://github.com/chiragroshan18/bitenow/blob/main/docs/screenshots/Order%20Tracking%20(Live).png) |
 | *Browsing restaurants with live map integration.* | *Real-time order status and delivery updates.* |
 
 | Restaurant Owner Panel | Admin Oversight |
 | :---: | :---: |
-| ![Owner](docs/screenshots/owner-dashboard.png) | ![Admin](docs/screenshots/admin-panel.png) |
+| ![Owner](https://github.com/chiragroshan18/bitenow/blob/main/docs/screenshots/Restaurant%20Owner%20Panel.png) | ![Admin](https://github.com/chiragroshan18/bitenow/blob/main/docs/screenshots/Admin%20Oversight.png) |
 | *Managing incoming orders and updating menu items.* | *Platform-wide metrics and user management.* |
 
-*(Note: Replace placeholder paths with actual image assets in `/docs/screenshots/`)*
 
 ---
 
