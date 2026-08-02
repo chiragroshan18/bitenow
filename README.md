@@ -120,36 +120,49 @@ This platform introduces an event-driven architecture utilizing **WebSockets (So
 
 ```mermaid
 graph TB
-    subgraph Client [Client Applications (React)]
-        C[Customer App]
-        R[Restaurant Dashboard]
-        D[Delivery App]
-        A[Admin Portal]
+    subgraph Client["Client Applications (React)"]
+        C["Customer App"]
+        R["Restaurant Dashboard"]
+        D["Delivery App"]
+        A["Admin Portal"]
     end
 
-    subgraph API [API Gateway & Services (Express/Node)]
-        Auth[Auth Service]
-        Order[Order Service]
-        Menu[Menu Service]
-        Geo[Geo & Routing Service]
-        WS[WebSocket Manager]
+    subgraph API["API Gateway & Services (Express/Node)"]
+        Auth["Auth Service"]
+        Order["Order Service"]
+        Menu["Menu Service"]
+        Geo["Geo & Routing Service"]
+        WS["WebSocket Manager"]
     end
 
-    subgraph Data [Data Layer]
-        PG[(PostgreSQL)]
-        Prisma[Prisma ORM]
+    subgraph Data["Data Layer"]
+        PG[("PostgreSQL")]
+        Prisma["Prisma ORM"]
     end
 
-    subgraph External [Third-Party Services]
-        Cloudinary[Cloudinary (Images)]
+    subgraph External["Third-Party Services"]
+        Cloudinary["Cloudinary (Images)"]
     end
 
-    C --> Auth & Order & Menu & WS
-    R --> Auth & Order & Menu & WS
-    D --> Auth & Geo & Order & WS
-    A --> Auth & Geo
+    C --> Auth
+    C --> Order
+    C --> Menu
+    C --> WS
+    R --> Auth
+    R --> Order
+    R --> Menu
+    R --> WS
+    D --> Auth
+    D --> Geo
+    D --> Order
+    D --> WS
+    A --> Auth
+    A --> Geo
 
-    Auth & Order & Menu & Geo --> Prisma
+    Auth --> Prisma
+    Order --> Prisma
+    Menu --> Prisma
+    Geo --> Prisma
     Prisma --> PG
     Menu --> Cloudinary
 ```
