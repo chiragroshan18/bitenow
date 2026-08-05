@@ -15,7 +15,7 @@
   [![Stars](https://img.shields.io/github/stars/rosha/food-delivery-app?style=flat-square)](https://github.com/rosha/food-delivery-app/stargazers)
   [![Issues](https://img.shields.io/github/issues/rosha/food-delivery-app?style=flat-square)](https://github.com/rosha/food-delivery-app/issues)
 
-  [**Documentation**](#api-documentation) • [**Report Bug**](#) • [**Request Feature**](#)
+  
 </div>
 
 ---
