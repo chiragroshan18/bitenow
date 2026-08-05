@@ -398,5 +398,5 @@ This project is licensed under the **MIT License** – see the [LICENSE](https:/
 
 ## 👨‍💻 Author & Acknowledgements
 
-- Built with ❤️ by **[rosha]**
+- Built with ❤️ by **[chirag]**
 - Special thanks to the open-source maintainers of Vite, Prisma, and Socket.io.
