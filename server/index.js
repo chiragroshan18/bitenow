@@ -28,6 +28,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
+// --- Welcome Root & /api handlers ---
+const apiWelcomeHandler = (req, res) => {
+  res.json({
+    message: 'Welcome to CraveCraft Food Delivery REST API Server',
+    status: 'online',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/auth',
+      restaurants: '/api/restaurants',
+      orders: '/api/orders',
+      admin: '/api/admin',
+      addresses: '/api/addresses',
+      favorites: '/api/favorites',
+      images: '/api/images'
+    }
+  });
+};
+
+app.get('/', apiWelcomeHandler);
+app.get('/api', apiWelcomeHandler);
+
 // --- API routes ---
 app.use('/api', routes);
 
